@@ -1,0 +1,13 @@
+$mainColor : #001cff;
+$heightTitle : 200px;
+
+@mixin inlineBlock($align:bottom) {
+  display: inline-block;
+  vertical-align: $align;
+}
+
+@mixin transform($properties) {
+  -webkit-transform: $properties;
+  -ms-transform: $properties;
+  transform: $properties;
+}
