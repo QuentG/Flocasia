@@ -4,7 +4,7 @@
     </div>
 
     <div class="menu">
-        <a class="link" <?= (in_array($page, ['game'])) ? 'active' : ''?> href="<?= PATH ?>game">Le jeu</a>
+        <a class="link" href="<?= PATH ?>game">Le jeu</a>
         <a class="link" href="<?= PATH ?>community">Communauté</a>
         <a class="link" href="<?= PATH ?>flocapedia">Flocapédia</a>
         <a class="link" href="<?= PATH ?>contact">Contact</a>
@@ -17,4 +17,4 @@
     </div>
 </header>
 
-<span><a href="#">Vous n'avez pas de compte ?</a></span>
+<span><a href="<?= PATH ?>">Vous n'avez pas de compte ?</a></span>
