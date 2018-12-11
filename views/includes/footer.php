@@ -1,3 +1,3 @@
 <footer>
-    <!-- FOOTER -->
+    <!-- Content footer -->
 </footer>
