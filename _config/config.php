@@ -43,9 +43,9 @@ define("WEBSITE_FACEBOOK_URL", "");
 define("WEBSITE_FACEBOOK_IMAGE", "");
 
 // DataBase informations
-define("DATABASE_HOST", "");
-define("DATABASE_NAME", "");
-define("DATABASE_USER", "");
-define("DATABASE_PASSWORD", "");
+define("DATABASE_HOST", "localhost");
+define("DATABASE_NAME", "flocasia");
+define("DATABASE_USER", "root");
+define("DATABASE_PASSWORD", "root");
 
 
