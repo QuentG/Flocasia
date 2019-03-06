@@ -1,11 +1,8 @@
 <?php
 
-$allTopics = Topic::getAllTopic();
-
-if(isset($_GET['categorie']) && !empty($_GET['categorie'])) {
-
+if(isset($_GET['categorie']) && !empty($_GET['categorie']))
+{
 	$category = str_secur($_GET['categorie']) ?? false;
-
 	$categories = array();
 	$req = Topic::getCategories();
 
@@ -22,47 +19,37 @@ if(isset($_GET['categorie']) && !empty($_GET['categorie'])) {
 	}
 
 	if ($id_cat) {
-		if(isset($_GET['subcategorie']) && !empty($_GET['subcategorie'])) {
 
-			$subcategory = str_secur($_GET['subcategory']) ?? false;
-			$subcategories = array();
-			$id_subcat = Topic::getSubCategories($id);
+		$subcategory = str_secur($_GET['subcategorie']) ?? false;
+		$subcategories = array();
 
-			foreach ($id_subcat as $sc)
-			{
-				array_push($subcategories, array($sc['id'], Topic::urlEncode($sc['nom'])));
-			}
+		$subcats = Topic::getSubCategories($id_cat);
+		debug($subcats);
 
-			foreach ($subcategories as $sc) {
-				// Verif que ce soit dans l'array
-				if (in_array($subcategory, $sc)) {
-					// Int
-					$id_subcategory = intval($cat[0]);
-				}
+		foreach ($id_subcat as $sc)
+		{
+		array_push($subcategories, array($sc['id'], Topic::urlEncode($sc['nom'])));
+		}
+		foreach ($subcategories as $sc) {
+			// Verif que ce soit dans l'array
+			if (in_array($subcategory, $sc)) {
+				// Int
+				$id_subcategory = intval($cat[0]);
 			}
 		}
-
-		// Sql
-		$sql = "SELECT * FROM forum_topics 
-						INNER JOIN forum_topicscategorie ON forum_topics.id = forum_topicscategorie.id_topic 
-						INNER JOIN forum_categories ON forum_topicscategorie.id_categorie = forum_categories.id 
-						INNER JOIN forum_subcategories ON forum_topicscategorie.id_subcategorie = forum_subcategories.id 
-						WHERE forum_categories.id = ?";
 
 		// Add subcat or not
 		if ($id_subcategory) {
-			$sql .= "AND forum_subcategories = ?";
-			$push = array($id_cat, $id_subcategory);
+			$topics = Topic::getTopicFromSubCategory($id_subcategory);
 		} else {
-			$push = array($id_cat);
+			$topics = Topic::getTopicFromCategory($id_cat);
 		}
 
-		// Push topics
-		$topics = Topic::pushTopic($sql, $push);
+		debug($topics);
+
 
 	} else {
-		die('Category not found');
+		die('Category not found SOZ');
 	}
-} else{
-	//die('Pas ouf');
+	} else {
 }

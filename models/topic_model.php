@@ -34,16 +34,45 @@ class Topic
 
 		$id = str_secur($id) ?? false;
 
-		$subcat = $DB->fetch('SELECT id FROM forum_subcategorie WHERE id_categories = ?', [$id], true);
+		$subcat = $DB->fetch('SELECT * FROM forum_subcategories WHERE id_categories = ?', [$id], true);
 		return $subcat;
 	}
 
-	public static function pushTopic($req, $tab = [])
+
+	public static function getTopicFromCategory($id)
 	{
 		global $DB;
 
-		$exec = $DB->execute($req, $tab);
-		return $exec;
+		$id = str_secur($id) ?? false;
+
+		$sql = "SELECT * FROM forum_topics
+			INNER JOIN forum_topicscategorie ON forum_topics.id = forum_topicscategorie.id_topic
+			INNER JOIN forum_categories ON forum_topicscategorie.id_categorie = forum_categories.id
+			INNER JOIN forum_subcategories ON forum_topicscategorie.id_subcategorie = forum_subcategories.id
+			WHERE forum_categories.id = ?";
+
+		$topics = $DB->fetch($sql, [$id], true);
+		return $topics;
+	}
+
+	/**
+	 * @param $id
+	 * @return array|mixed
+	 */
+	public static function getTopicFromSubCategory($id)
+	{
+		global $DB;
+
+		$id = str_secur($id) ?? false;
+
+		$sql = "SELECT * FROM forum_topics
+			INNER JOIN forum_topicscategorie ON forum_topics.id = forum_topicscategorie.id_topic
+			INNER JOIN forum_categories ON forum_topicscategorie.id_categorie = forum_categories.id
+			INNER JOIN forum_subcategories ON forum_topicscategorie.id_subcategorie = forum_subcategories.id
+			WHERE forum_subcategories.id = ?";
+
+		$topics = $DB->fetch($sql, [$id], true);
+		return $topics;
 	}
 
 	/**

@@ -17,7 +17,7 @@
 			<th>Dernier message</th>
 			<th >Création</th>
 		</tr>
-		<?php foreach ($allTopics as $key => $topic) { ?>
+		<?php foreach ($topics as $key => $topic) { ?>
 			<tr>
 				<td>
 					<h4><a href=""><?= $topic['sujet'] ?></a></h4>
