@@ -1,0 +1,3 @@
+<?php
+
+$insert = NewTopic::addTopic();

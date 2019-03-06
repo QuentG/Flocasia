@@ -1,20 +1,19 @@
 <!doctype html>
 <html lang="fr">
 <head>
-
 	<?php include_once 'views/includes/head.php'?>
-
 	<title><?= ucfirst($page) ?></title>
 </head>
 
 <body>
 
 	<?php include_once 'views/includes/header.php'?>
+
     <div class="container mt-5 col-xl-10">
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>Catégories</th>
+                    <th>Categories</th>
                     <th>Messages</th>
                     <th>Derniers messages</th>
                 </tr>
@@ -23,7 +22,7 @@
             <?php foreach ($allCategories as $category => $allSubCategories) { ?>
                 <tr>
                     <td>
-                        <h4><a href=""><?= $category ?></a></h4>
+                        <h4><a href="<?= PATH ?>topic?categorie=<?= strtolower($category) ?>"><?= $category ?></a></h4>
                         <p>
                         <?php foreach ($allSubCategories as $subcategory) { ?>
                             <a href=""><?= $subcategory['nom'] ?></a> |
@@ -36,8 +35,8 @@
             </tbody>
         <?php } ?>
         </table>
+        <a href="<?= PATH ?>new_topic"><button class="btn btn-primary"><i class="fa fa-plus"></i> Nouveau topic</button></a>
     </div>
-
 
 	<?php include_once 'views/includes/footer.php'?>
 

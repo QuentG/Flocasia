@@ -60,7 +60,6 @@ CREATE TABLE `forum_topics` (
   `contenu` text NOT NULL,
   `date-heure-creation` datetime NOT NULL,
   `resolu` tinyint(1) NOT NULL,
-  `notif_createur` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------

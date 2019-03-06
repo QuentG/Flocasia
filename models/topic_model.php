@@ -1,48 +1,49 @@
 <?php
 
-
-class Categories
+class Topic
 {
 
 	public $id;
-	public $name;
+	/**
+	 * Get all topic
+	 */
+	public static function getAllTopic()
+	{
+		global $DB;
 
+		// Recup des topic
+		$topics = $DB->fetch('SELECT * FROM forum_topics', [], true);
+		return $topics;
+	}
 
 	/**
-	 * Récupérer une catégorie par son ID
-	 * @param $id
-	 * @return array|mixed
+	 * Recup category + subcatecory for a topic
 	 */
-	static function getCategory($id)
+	public static function getCategories()
+	{
+		global $DB;
+
+		$categories = $DB->fetch('SELECT * FROM forum_categories', [], true);
+		return $categories;
+
+	}
+
+	public static function getSubCategories($id)
 	{
 		global $DB;
 
 		$id = str_secur($id) ?? false;
 
-		$cat = $DB->fetch('SELECT * FROM forum_categories WHERE id = ?', [$id], false);
-
-		return $cat;
+		$subcat = $DB->fetch('SELECT id FROM forum_subcategorie WHERE id_categories = ?', [$id], true);
+		return $subcat;
 	}
 
-
-	/**
-	 * Récupérer toute les catégories / Sous catégories d'une catégories
-	 * @return array
-	 */
-	static function getAllCategories ()
+	public static function pushTopic($req, $tab = [])
 	{
 		global $DB;
 
-		$categories = $DB->fetch('SELECT * FROM forum_categories ORDER BY name', [], true);
-
-		$allCat = [];
-		foreach ($categories as $category) {
-			$subCategories = $DB->fetch('SELECT * FROM forum_subcategories WHERE id_categories = ? ORDER BY nom', [$category['id']], true);
-			$allCat[$category['name']] = $subCategories;
-
-		}
-
-		return $allCat;
+		$exec = $DB->execute($req, $tab);
+		return $exec;
 	}
 
 	/**
@@ -68,3 +69,8 @@ class Categories
 		return $encoded;
 	}
 }
+
+
+/*
+ * "SELECT * FROM forum_topics INNER JOIN forum_topicscategorie ON forum_topics.id = forum_topicscategorie.id_topic INNER JOIN forum_categories ON forum_topicscategorie.id_categorie = forum_categories.id INNER JOIN forum_subcategories ON forum_topicscategorie.id_subcategorie = forum_subcategories.id WHERE forum_categories.id = ?";
+ */
