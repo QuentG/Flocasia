@@ -24,7 +24,6 @@ if(isset($_GET['categorie']) && !empty($_GET['categorie']))
 		$subcategories = array();
 
 		$subcats = Topic::getSubCategories($id_cat);
-		debug($subcats);
 
 		foreach ($id_subcat as $sc)
 		{
@@ -44,9 +43,6 @@ if(isset($_GET['categorie']) && !empty($_GET['categorie']))
 		} else {
 			$topics = Topic::getTopicFromCategory($id_cat);
 		}
-
-		debug($topics);
-
 
 	} else {
 		die('Category not found SOZ');

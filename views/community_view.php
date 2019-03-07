@@ -35,7 +35,6 @@
             </tbody>
         <?php } ?>
         </table>
-        <a href="<?= PATH ?>new_topic"><button class="btn btn-primary"><i class="fa fa-plus"></i> Nouveau topic</button></a>
     </div>
 
 	<?php include_once 'views/includes/footer.php'?>
