@@ -45,7 +45,7 @@ class Topics
 
 		$id = str_secur($id) ?? false;
 
-		$sql = "SELECT *, forum_topics.id AS t_id FROM forum_topics
+		$sql = "SELECT *, forum_topics.id AS top_id FROM forum_topics
 			INNER JOIN forum_topicscategorie ON forum_topics.id = forum_topicscategorie.id_topic
 			INNER JOIN forum_categories ON forum_topicscategorie.id_categorie = forum_categories.id
 			INNER JOIN forum_subcategories ON forum_topicscategorie.id_subcategorie = forum_subcategories.id

@@ -20,7 +20,7 @@
 		<?php foreach ($topics as $key => $topic) { ?>
 			<tr>
 				<td>
-					<h4><a href=""><a href="<?= PATH ?>topic?title=<?= Topics::urlEncode($topic['sujet']) ?>&id=<?= $topic['t_id']?>"><?= $topic['sujet'] ?></a></a></h4>
+					<h4><a href=""><a href="<?= PATH ?>topic?title=<?= Topics::urlEncode($topic['sujet']) ?>&id=<?= $topic['top_id']?>"><?= $topic['sujet'] ?></a></a></h4>
 				</td>
 				<td>4329320348</td>
 				<td>06.03.2019 à 18h07<br />de QuentG</td>

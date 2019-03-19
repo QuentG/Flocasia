@@ -1,8 +1,8 @@
 <?php
 
-if(isset($_GET['categorie']) && !empty($_GET['categorie']))
+if(isset($_GET['category']) && !empty($_GET['category']))
 {
-	$category = str_secur($_GET['categorie']) ?? false;
+	$category = str_secur($_GET['category']) ?? false;
 	$categories = array();
 	$req = Topics::getCategories();
 
@@ -20,7 +20,7 @@ if(isset($_GET['categorie']) && !empty($_GET['categorie']))
 
 	if ($id_cat) {
 
-		$subcategory = str_secur($_GET['subcategorie']) ?? false;
+		$subcategory = str_secur($_GET['subcategory']) ?? false;
 		$subcategories = array();
 
 		$subcats = Topics::getSubCategories($id_cat);

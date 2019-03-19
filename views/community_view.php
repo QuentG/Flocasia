@@ -22,7 +22,7 @@
             <?php foreach ($allCategories as $category => $allSubCategories) { ?>
                 <tr>
                     <td>
-                        <h4><a href="<?= PATH ?>topics?categorie=<?= strtolower($category) ?>"><?= $category ?></a></h4>
+                        <h4><a href="<?= PATH ?>topics?category=<?= strtolower($category) ?>"><?= $category ?></a></h4>
                         <p>
                         <?php foreach ($allSubCategories as $subcategory) { ?>
                             <a href=""><?= $subcategory['nom'] ?></a> |
