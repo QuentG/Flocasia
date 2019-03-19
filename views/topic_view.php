@@ -9,27 +9,14 @@
 
 <?php include_once 'views/includes/header.php'?>
 
-<div class="container mt-3">
-	<table class="table table-striped">
-		<tr>
-			<th>Sujet</th>
-			<th>Messages</th>
-			<th>Dernier message</th>
-			<th >Création</th>
-		</tr>
-		<?php foreach ($topics as $key => $topic) { ?>
-			<tr>
-				<td>
-					<h4><a href=""><?= $topic['sujet'] ?></a></h4>
-				</td>
-				<td>4329320348</td>
-				<td>06.03.2019 à 18h07<br />de QuentG</td>
-				<td><?= $topic['date_creation'] ?></td>
-			</tr>
-		<?php } ?>
-	</table>
-    <a href="<?= PATH ?>new_topic"><button class="btn btn-primary"><i class="fa fa-plus"></i> Nouveau topic</button></a>
-</div>
+<table class="table table-striped">
+	<tr>
+		<th>Sujet : <?= $topic['sujet'] ?></th>
+	</tr>
+	<tr>
+		<td><?= $topic['contenu'] ?></td>
+	</tr>
+</table>
 
 <?php include_once 'views/includes/footer.php'?>
 

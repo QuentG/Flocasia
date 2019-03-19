@@ -1,51 +1,21 @@
 <?php
 
-if(isset($_GET['categorie']) && !empty($_GET['categorie']))
+if(isset($_GET['title'], $_GET['id']) AND !empty($_GET['title']) AND !empty($_GET['id']))
 {
-	$category = str_secur($_GET['categorie']) ?? false;
-	$categories = array();
-	$req = Topic::getCategories();
+	$get_title = str_secur($_GET['title']) ?? false;
+	$get_id = str_secur($_GET['id']) ?? false;
 
-	foreach ($req as $cat) {
-		array_push($categories, array($cat['id'], Topic::urlEncode($cat['name'])));
+	$title = Topic::getTitle($get_id);
+
+	$current_title = $title['sujet'];
+
+	if($get_title !== Topics::urlEncode($current_title))
+	{
+		die('Title invalid');
 	}
 
-	foreach ($categories as $cat) {
-		// Verif que ce soit dans l'array
-		if (in_array($category, $cat)) {
-			// Int
-			$id_cat = intval($cat[0]);
-		}
-	}
+	$topic = Topic::getTopic($get_id);
 
-	if ($id_cat) {
-
-		$subcategory = str_secur($_GET['subcategorie']) ?? false;
-		$subcategories = array();
-
-		$subcats = Topic::getSubCategories($id_cat);
-
-		foreach ($id_subcat as $sc)
-		{
-		array_push($subcategories, array($sc['id'], Topic::urlEncode($sc['nom'])));
-		}
-		foreach ($subcategories as $sc) {
-			// Verif que ce soit dans l'array
-			if (in_array($subcategory, $sc)) {
-				// Int
-				$id_subcategory = intval($cat[0]);
-			}
-		}
-
-		// Add subcat or not
-		if ($id_subcategory) {
-			$topics = Topic::getTopicFromSubCategory($id_subcategory);
-		} else {
-			$topics = Topic::getTopicFromCategory($id_cat);
-		}
-
-	} else {
-		die('Category not found SOZ');
-	}
-	} else {
+} else {
+	die("Error");
 }

@@ -21,22 +21,16 @@
 		<tr>
 			<td>Catégorie</td>
 			<td>
-				<select>
-					<option>Catégorie 1</option>
-					<option>Catégorie 2</option>
-					<option>Catégorie 3</option>
-					<option>Catégorie 4</option>
-				</select>
+				<?= $category ?>
 			</td>
 		</tr>
 		<tr>
 			<td>Sous-Catégorie</td>
 			<td>
-				<select>
-					<option>Sous-Catégorie 1</option>
-					<option>Sous-Catégorie 2</option>
-					<option>Sous-Catégorie 3</option>
-					<option>Sous-Catégorie 4</option>
+				<select name="subcat">
+                    <?php foreach ($subcategories as $subcategory) {?>
+					    <option value="<?= $subcategory['id'] ?>"><?= $subcategory['nom'] ?></option>
+                    <?php } ?>
 				</select>
 			</td>
 		</tr>
